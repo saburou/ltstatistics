@@ -6,5 +6,7 @@ SQLAlchemyをインストール
 
 db.pyをインポートしてDB作成
 > python
+
 > import db
+
 > db.metadata.create_all()
