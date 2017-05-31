@@ -1,9 +1,9 @@
 
 ## DBセットアップ
 
-> # SQLAlchemyをインストール
+1. SQLAlchemyをインストール
 > pip install sqlalchemy
-> # db.pyをインポートしてDB作成
+1. db.pyをインポートしてDB作成
 > python
 > import db
 > db.metadata.create_all()
