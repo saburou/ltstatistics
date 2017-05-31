@@ -3,6 +3,7 @@
 
 SQLAlchemyをインストール
 > pip install sqlalchemy
+
 db.pyをインポートしてDB作成
 > python
 > import db
