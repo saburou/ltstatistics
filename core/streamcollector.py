@@ -2,7 +2,7 @@
 import json
 from core.requester import APIRequester
 from core.parser import StreamParser
-from core.viewanalyzer import ViewAnalyzer
+from core.analyzer import ViewAnalyzer
 
 
 class StreamCollector:
@@ -24,6 +24,7 @@ class StreamCollector:
             return
 
         return StreamParser.parse(j)
+
 # Request stream information.
 streams = StreamCollector.request()
 
@@ -31,11 +32,11 @@ streams = StreamCollector.request()
 if streams is None:
     exit()
 
-for s in streams:
-    if s is None:
-        continue
-    if s.count() == 0:
-        s.regist()
+# for s in streams:
+#     if s is None:
+#         continue
+#     if s.count() == 0:
+#         s.regist()
 
 # Analyze stream information.
 analyzer = ViewAnalyzer()

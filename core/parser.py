@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from entity.stream import Stream
+from model.models import Stream
 
 
 class StreamParser:
@@ -12,5 +12,5 @@ class StreamParser:
 
         result = []
         for stream in jsondata:
-            result.append(Stream(stream["id"], stream["title"], stream["author"], stream["created"], stream["viewing"], stream["view"], stream["comments"]))
+            result.append(Stream(id=stream["id"], title=stream["title"], author=stream["author"], startdate=stream["created"], viewing=stream["viewing"], comments=stream["comments"]))
         return result
