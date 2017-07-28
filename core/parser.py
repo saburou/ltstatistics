@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 from model.models import Stream
+from datetime import datetime, timezone
 
 
 class StreamParser:
@@ -12,5 +13,5 @@ class StreamParser:
 
         result = []
         for stream in jsondata:
-            result.append(Stream(id=stream["id"], title=stream["title"], author=stream["author"], startdate=stream["created"], viewing=stream["viewing"], comments=stream["comments"]))
+            result.append(Stream(id=stream["id"], title=stream["title"], author=stream["author"], startdate=datetime.strptime(stream["created"], '%a, %d %b %Y %H:%M:%S %Z'), viewing=stream["viewing"], comments=stream["comments"]))
         return result
