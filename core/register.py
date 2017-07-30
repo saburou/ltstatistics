@@ -5,13 +5,15 @@ from model.models import Stream, StTotalView, StView, StComment
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+Engine = create_engine('sqlite:///database.sqlite3', echo=True)
 
-class Analyzer(metaclass=ABCMeta):
+
+class Register(metaclass=ABCMeta):
     def __init__(self):
         super().__init__()
 
     @abstractmethod
-    def analyze(self, data):
+    def regist(self, data):
         """
         Analyze data.
         :param data: target data. 
@@ -19,20 +21,16 @@ class Analyzer(metaclass=ABCMeta):
         """
         raise NotImplementedError
 
-Engine = create_engine('sqlite:///database.sqlite3', echo=True)
 
-
-class ViewAnalyzer(Analyzer):
+class ViewRegister(Register):
     """
-    Analysis stream viewing information.
+    Regist stream viewing information into database.
     """
-    def analyze(self, data):
-
+    def regist(self, data):
         _SESSION = sessionmaker(bind=Engine)
         session = _SESSION()
 
         currentdate = datetime.now()
-        # Regist individual stream view.
         total = 0
         for d in data:
             if not isinstance(d, Stream):
@@ -53,6 +51,24 @@ class ViewAnalyzer(Analyzer):
         # Regist total stream view.
         totalview = StTotalView(date=currentdate, amount=total)
         totalview.regist(StTotalView, currentdate, total, session)
+
+        session.commit()
+        session.close()
+
+
+class StreamRegister(Register):
+    """
+    Regist stream information.
+    """
+    def regist(self, data):
+        _SESSION = sessionmaker(bind=Engine)
+        session = _SESSION()
+        for s in data:
+            if s is None:
+                continue
+            if Stream.count(Stream, target_id=s.id, session=session) == 0:
+                Stream.regist(Stream, target_id=s.id, target_title=s.title, target_author=s.author,
+                              target_startdate=s.startdate, session=session)
 
         session.commit()
         session.close()
