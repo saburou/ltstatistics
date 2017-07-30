@@ -115,5 +115,6 @@ class Stream(Base):
         raise NotImplementedError
 
 if __name__ == "__main__":
-    engine = create_engine('sqlite:///database.sqlite3', echo=True)
+    schema = 'sqlite:///../core/database.sqlite3'
+    engine = create_engine(schema, echo=True)
     Base.metadata.create_all(engine)
