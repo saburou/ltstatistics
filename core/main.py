@@ -3,9 +3,6 @@ import json
 from core.requester import APIRequester
 from core.parser import StreamParser
 from core.register import ViewRegister, StreamRegister
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from model.models import Stream, StTotalView, StView, StComment
 
 
 class StreamCollector:
