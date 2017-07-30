@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     # Regist stream information.
     if streams is None:
-        exit()
+        exit(1)
     stream_register = StreamRegister()
     stream_register.regist(streams)
 
