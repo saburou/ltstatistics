@@ -27,9 +27,7 @@ def daytotalview(date):
     enddate = DateUtils.add_day(startdate, 1)
 
     session = DBSessionFactory.create()
-    data = StTotalView().select(target_startdate='%s-%s-%s' % (startdate.year, startdate.month, startdate.day),
-                                target_enddate='%s-%s-%s' % (enddate.year, enddate.month, enddate.day),
-                                session=session)
+    data = StTotalView().select(target_startdate=startdate, target_enddate=enddate, session=session)
 
     result = []
     for d in data:
