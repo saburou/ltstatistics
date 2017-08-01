@@ -8,8 +8,12 @@ class Message:
     """
 
     ID_BAD_REQUEST = 500
+    ID_NOT_IMPLEMENTED = 501
+    ID_SERVICE_UNAVAILABLE = 503
 
-    TEXT_INVALID_DATE = "Request had invalid date format."
+    INVALID_DATE = "Request had invalid date format."
+    NOT_IMPLEMENTED = "Request API is not implemented."
+    SERVICE_UNAVAILABLE = "Request API is unavailable."
 
     @staticmethod
     def info(message_id, message):
