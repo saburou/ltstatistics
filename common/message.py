@@ -7,7 +7,7 @@ class Message:
     Define JSON messages and template.
     """
 
-    ID_BAD_REQUEST = 400
+    ID_BAD_REQUEST = 500
 
     TEXT_INVALID_DATE = "Request had invalid date format."
 
