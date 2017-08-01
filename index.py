@@ -14,12 +14,12 @@ CONTENT_TYPE = 'application/json'
 @get('/api/totalview/day/<date>')
 def daytotalview(date):
     """
-    指定年月日の統計視聴情報を返します。
-    :param date: 対象日
-    :return: 統計視聴情報
+    Response total viewings information in target date.
+    :param date: target date (format: yyyy-mm-dd)
+    :return: total viewings
     """
     if not DayValidator().isvalid(date):
-        return Message.error(Message.ID_BAD_REQUEST, Message.TEXT_INVALID_DATE)
+        return Message.error(Message.ID_BAD_REQUEST, Message.INVALID_DATE)
 
     response.content_type = CONTENT_TYPE
 
@@ -36,6 +36,18 @@ def daytotalview(date):
     session.close()
 
     return json.dumps({'unit': 'day', 'view': result}).replace("\\", "")
+
+
+@get('/api/totalview/month/<date>')
+def monthtotalview(date):
+    response.status = Message.ID_NOT_IMPLEMENTED
+    return Message.error(Message.ID_NOT_IMPLEMENTED, Message.NOT_IMPLEMENTED)
+
+
+@get('/api/totalview/year/<date>')
+def monthtotalview(date):
+    response.status = Message.ID_NOT_IMPLEMENTED
+    return Message.error(Message.ID_NOT_IMPLEMENTED, Message.NOT_IMPLEMENTED)
 
 
 if __name__ == "__main__":
